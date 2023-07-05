@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title Mi Aplicación
+    link(rel='stylesheet', href='./styles.css')
+
+  body
+    h1 Mi Aplicación
+
+    if errors
+      ul.errors
+        each error in errors
+          li= error.msg
+
+    h2 Datos existentes
+    ul.datos
+      each dato in datos
+        li.dato
+          span.columna= dato.columna1
+          a(href=`/actualizar/${dato.id}`, onclick='return confirm("¿Seguro que desea actualizar este dato?")') Actualizar
+          a(href=`/eliminar/${dato.id}`, onclick='return confirm("¿Seguro que desea eliminar este dato?")') Eliminar
+
+    h2 Agregar nuevo dato
+    form(action="/" method="POST")
+      input(type="text" name="nuevoDato" placeholder="Ingrese un nuevo dato")
+      button(type="submit") Agregar
